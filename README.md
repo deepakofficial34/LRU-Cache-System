@@ -125,7 +125,7 @@ So the cache automatically keeps “hot” data and drops “cold” data, which
 **Windows (PowerShell)** — builds demo + tests and runs tests:
 
 ```powershell
-cd "c:\Users\adity\projects\LRU-Cache-Implementation"
+cd "c:\Users\deepakofficial34\projects\LRU-Cache-Implementation"
 .\build.ps1
 ```
 
