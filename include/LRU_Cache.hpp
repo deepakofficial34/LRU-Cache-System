@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <list>
+#include<stack>
 #include <unordered_map>
 #include <string>
 
