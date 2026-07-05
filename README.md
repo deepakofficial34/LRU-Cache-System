@@ -2,7 +2,7 @@
 
 An **LRU (Least Recently Used)** cache implementation in C++ using a **doubly linked list** and an **unordered map**. The cache stores **strings** with **integer keys**, suitable for scenarios like page caching (e.g., page number → page content).
 
-- **Author:** Aditya Paneru 
+- **Author:** G.Deepak 
 - **Relevant areas:** Data Structures & Algorithms (DSA), Object-Oriented Programming (OOP), Operating Systems (OS)  
 - **Language:** C++  
 
