@@ -1,0 +1,27 @@
+# Build outputs
+*.exe
+*.out
+*.o
+*.obj
+*.so
+*.dll
+*.a
+*.lib
+lru_cache
+test_lru_cache
+
+# IDE
+.vs/
+.vscode/
+*.suo
+*.user
+*.sln.docstates
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backup / temp
+*~
+*.bak
+*.swp

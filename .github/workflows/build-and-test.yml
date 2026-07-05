@@ -1,0 +1,29 @@
+# Build and run tests on every push and pull request
+name: Build and Test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build demo
+        run: |
+          g++ -std=c++17 -Wall -Wextra -I. -o lru_cache src/main.cpp
+
+      - name: Build tests
+        run: |
+          g++ -std=c++17 -Wall -Wextra -I. -o test_lru_cache tests/test_lru_cache.cpp
+
+      - name: Run tests
+        run: ./test_lru_cache
+
+      - name: Run demo (sanity check)
+        run: ./lru_cache
