@@ -28,7 +28,7 @@ This file explains **everything** about this project in detail. No prior knowled
 This project is a **C++ implementation of an LRU (Least Recently Used) cache**.  
 In simple terms: it is a **fixed-size box** that stores **key–value pairs** (here: integer key → string value). When the box is full and you add something new, the item that was **least recently used** is removed to make room. The code uses a **doubly linked list** and an **unordered map** to do this efficiently.
 
-- **Author:** Aditya Paneru (IIIT Lucknow)  
+- **Author:** G. Deepak (IIIT Lucknow)  
 - **Topics:** Data Structures & Algorithms (DSA), Object-Oriented Programming (OOP), Operating Systems (OS)
 
 ---

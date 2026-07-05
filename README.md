@@ -2,7 +2,7 @@
 
 An **LRU (Least Recently Used)** cache implementation in C++ using a **doubly linked list** and an **unordered map**. The cache stores **strings** with **integer keys**, suitable for scenarios like page caching (e.g., page number → page content).
 
-- **Author:** G.Deepak 
+- **Author:** G. Deepak
 - **Relevant areas:** Data Structures & Algorithms (DSA), Object-Oriented Programming (OOP), Operating Systems (OS)  
 - **Language:** C++  
 
@@ -122,11 +122,11 @@ So the cache automatically keeps “hot” data and drops “cold” data, which
 
 ### Option 1: Build scripts
 
-**Windows (PowerShell)** — builds demo + tests and runs tests:
+**Windows (PowerShell)** — builds demo + tests and runs tests (if script execution is disabled, bypass execution policy):
 
 ```powershell
-cd "c:\Users\deepakofficial34\projects\LRU-Cache-Implementation"
-.\build.ps1
+cd "C:\Users\gdeepak\Desktop\LRU_Cache"
+powershell -ExecutionPolicy Bypass -File .\build.ps1
 ```
 
 **Linux / macOS (Makefile):**
@@ -345,4 +345,4 @@ Passed: 10  Failed: 0
 
 ---
 
-
+*Project by G. Deepak — DSA, OOP, OS.*

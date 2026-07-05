@@ -1,7 +1,7 @@
 /*
 
 Project - LRU Cache implementation 
-Name - Aditya Paneru 
+Name - G. Deepak
 College - IIIT Lucknow 
 
 */
@@ -27,10 +27,10 @@ class LRU_Cache{
     // everything in my class is public 
     public:
     
-    // this cache stores strings (data type inside cache is always same as that of list)
-    // integers are mapped to strings , i.e. we can access data using integers 
-    list<string> L;
-    unordered_map<int,list<string>::iterator > M;
+    // this cache stores pairs of (key, data)
+    // integers are mapped to iterators of these pairs, allowing O(1) eviction
+    list<pair<int, string>> L;
+    unordered_map<int, list<pair<int, string>>::iterator> M;
     // capacity is the size of the cache , i.e. how many strings it can hold 
     int capacity ;
     
@@ -55,38 +55,24 @@ class LRU_Cache{
     int size() const {
         return capacity;
     }
-//////////////////////////////////////////////////////////////////    
+////////////////////////////////////////////////////////////////    
     // The METHOD FEEDIN is used to feed the data to the cache 
     void feedin(int key , const string& data){
+        if(capacity <= 0) return;
         
         // if key not present in cache already 
         if(M.find(key)==M.end()){
             // when cache is full then remove last then insert else just insert 
-            // so we just need if rather than if else 
             if(capacity > 0 && L.size()==(size_t)capacity){
-                // remove the last element first from map then from list  
-                
-                // removing from map 
-                for(auto it:M){
-                    // finding the key to remove from map here 
-                    if((it.second) == --L.end()){
-                        // M[it.first] = M.end();
-                        M.erase(it.first);//it.first
-                        
-                        break;
-                    }
-                }
+                // remove the last element first from map then from list
+                int last_key = L.back().first;
+                M.erase(last_key);
                 
                 // removing from list 
                 L.pop_back();
-                
-            }
-            // key is not present and cache is not full case 
-            else{
-                
             }
             // now insertion 
-            L.push_front(data);
+            L.push_front({key, data});
             M[key]=L.begin();
             return;
         }
@@ -95,11 +81,9 @@ class LRU_Cache{
             // erase the already present data for that key in the list 
             L.erase(M[key]);
             // add the data to the list 
-            L.push_front(data);
+            L.push_front({key, data});
             // reassign the value of iterator in the map for that key 
             M[key]=L.begin();
-            // we do not need to remove the last value here ,
-            // since size of cache remains same after this operation 
             return;
         }
         
@@ -107,15 +91,15 @@ class LRU_Cache{
 ////////////////////////////////////////////////////////////////////////// 
     // The METHOD GETTIN is used for getting the data for a certain key from LRU Cache 
     string gettin(int key) const {
-        if(M.find(key)==M.end()){
+        auto it = M.find(key);
+        if(it==M.end()){
             // If the key dosent have a specific value to it 
             // then returns 0 
             return "0";
         }
         else{
             // returning the value of the key 
-            // M[key] returns iterator , and * gives the value stored there 
-            return *M[key];
+            return it->second->second;
         }
         
     }

@@ -1,7 +1,7 @@
 /*
  * LRU (Least Recently Used) Cache
  * Implementation using doubly linked list + unordered map.
- * Author: Aditya Paneru | IIIT Lucknow
+ * Author: G. Deepak | IIIT Lucknow
  */
 #ifndef LRU_CACHE_HPP
 #define LRU_CACHE_HPP
@@ -19,8 +19,8 @@ public:
     std::string gettin(int key) const;
 
 private:
-    std::list<std::string> L;  // front = MRU, back = LRU
-    std::unordered_map<int, std::list<std::string>::iterator> M;
+    std::list<std::pair<int, std::string>> L;  // front = MRU, back = LRU
+    std::unordered_map<int, std::list<std::pair<int, std::string>>::iterator> M;
     int capacity;
 };
 
@@ -44,22 +44,20 @@ inline int LRU_Cache::size() const {
 }
 
 inline void LRU_Cache::feedin(int key, const std::string& data) {
+    if (capacity <= 0) return;
     if (M.find(key) == M.end()) {
         if (capacity > 0 && L.size() == static_cast<size_t>(capacity)) {
-            for (auto it = M.begin(); it != M.end(); ++it) {
-                if (it->second == --L.end()) {
-                    M.erase(it);
-                    break;
-                }
-            }
+            // Evict least recently used (back of the list)
+            int last_key = L.back().first;
+            M.erase(last_key);
             L.pop_back();
         }
-        L.push_front(data);
+        L.push_front({key, data});
         M[key] = L.begin();
         return;
     }
     L.erase(M[key]);
-    L.push_front(data);
+    L.push_front({key, data});
     M[key] = L.begin();
 }
 
@@ -67,7 +65,7 @@ inline std::string LRU_Cache::gettin(int key) const {
     auto it = M.find(key);
     if (it == M.end())
         return "0";
-    return *it->second;
+    return it->second->second;
 }
 
 #endif // LRU_CACHE_HPP
