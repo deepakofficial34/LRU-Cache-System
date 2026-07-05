@@ -97,7 +97,7 @@ Example: key `3` might map to the string `"alpha"`. That way you can store both 
 
 ## 6. How does the LRU cache work? (big picture)
 
-- You create a cache with a **capacity** (e.g. 2 or 10). That is the **maximum number of key–value pairs** the cache can hold.
+- You create a cache with a **capacity** (e.g. 2 or 10). That is the **maximum number of key–value pairs** the cache can store.
 - You can:
   - **Put** a key–value pair: `feedin(key, value)`. If the key is new and the cache is full, the **least recently used** entry is removed, then the new one is added. If the key already exists, its value is updated and it becomes “most recently used.”
   - **Get** the value for a key: `gettin(key)`. If the key is in the cache, you get its string; if not, you get `"0"` (meaning “not in cache”).
