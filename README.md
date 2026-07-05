@@ -1,4 +1,4 @@
-# LRU Cache Implementation
+# LRU Cache System
 
 An **LRU (Least Recently Used)** cache implementation in C++ using a **doubly linked list** and an **unordered map**. The cache stores **strings** with **integer keys**, suitable for scenarios like page caching (e.g., page number → page content).
 
