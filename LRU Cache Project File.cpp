@@ -10,6 +10,7 @@ College - IIIT Lucknow
 // we have used doubly linked list as it was readily availaible in the c++ stl library 
 // hence no need to write its functions 
 #include <list>
+#include<stack>
 // we do not need ordered map , unordered map is enough for hashing 
 #include <unordered_map>
 using namespace std;
